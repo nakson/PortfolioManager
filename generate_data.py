@@ -10,37 +10,35 @@ import os
 data = {
     'Ticker': [
         # USD holdings
-        'AXP','BND','COST','GOOG','IWY','MOAT','NFLX','NVDA','O','PFF','VEA','VGSH','VOO',
-        'CRYPTO_STABLE','CRYPTO_COINS',
-        # HK holdings (已加 .HK)
-        '02269.HK','02331.HK','03288.HK','09618.HK',
-        # CNY holdings (原始代码保留，按需后续加 .SS/.SZ)
-        '001632','010955','00968','01005','006484','007540','160424','007339','010365','001691',
-        '023884','022365','019891','011840','005693','020256'
+        'VOO', 'NVDA', 'AAPL', 'TLT',
+        # HK holdings (Requires .HK suffix)
+        '0700.HK', '09988.HK', 
+        # CNY holdings (Domestic Mutual Funds - 6 digits, fetched from TianTian Fund)
+        '001632', '005827',
+        # CNY holdings (Exchange Traded - require .SS/.SZ suffix, fetched from Yahoo)
+        '600519.SS' 
     ],
     'Name': [
         # USD holdings
-        '美国运通','美全债指数','好市多','谷歌','IWY','MOAT','Netflix','NVIDIA','Realty Income','PFF','VEA','VGSH','VOO',
-        'crypto_稳定币','crypto_coins',
+        'Vanguard S&P 500', 'NVIDIA', 'Apple', '20+ Year Treasury Bond',
         # HK holdings
-        '药明生物','李宁','海天味业','京东集团',
+        'Tencent (腾讯)', 'Alibaba (阿里)',
         # CNY holdings
-        '天弘中证食品饮料ETF联接C','天弘中证智能汽车指数发起式A','广发养老指数A','汇添富中证精准医疗指数(LOF)A',
-        '广发中债1-3年国开债指数A','华泰保兴安悦债券A','华安创业板50ETF联接C','易方达沪深300ETF联接C',
-        '鹏华中证香港银行指数(LOF)C','南方香港成长灵活配置混合','华夏中证金融科技主题ETF发起式联接A','永赢科技智选混合发起C',
-        '华夏中证2000ETF发起式联接A','天弘中证人工智能C','广发中证军工ETF联接C','中欧中证机器人指数发起C'
+        '天弘中证食品饮料ETF联接C', '易方达蓝筹精选混合',
+        '贵州茅台'
     ],
-    'Shares': [0]* (15 + 4 + 16),  # 以上 Ticker 数量的占位 0（请确保长度匹配）
-    'Avg_Cost': [0.0] * (15 + 4 + 16),
-    'Target_Pct': [0.0] * (15 + 4 + 16),
+    'Shares': [
+        10, 5, 20, 10,
+        100, 100, 
+        1000, 500, 
+        100
+    ],
+    'Avg_Cost': [0.0] * 9,
+    'Target_Pct': [0.15, 0.15, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1],
     'Currency': [
-        # USD group    
-        'USD','USD','USD','USD','USD','USD','USD','USD','USD','USD','USD','USD','USD', 
-        'USD','USD',
-        # HK group
-        'HKD','HKD','HKD','HKD',             
-        # CNY group
-        'CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY','CNY'
+        'USD','USD','USD','USD', 
+        'HKD','HKD',             
+        'CNY','CNY','CNY'
     ]
     
 }
