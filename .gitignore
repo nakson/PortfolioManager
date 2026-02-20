@@ -1,0 +1,19 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data files (keep example, ignore user data if desired, but user might want to backup their portfolio)
+*.xlsx 
+
+# OS specific
+.DS_Store
