@@ -181,6 +181,13 @@ for index, row in df.iterrows():
     
     # 获取当前价格
     price = prices.get(ticker, 0.0)
+    
+    # 如果获取不到价格，使用平均成本作为当前价格
+    if price == 0.0 and 'Avg_Cost' in row:
+        fallback_price = row['Avg_Cost']
+        if pd.notna(fallback_price):
+            price = fallback_price
+
     current_prices.append(price)
     
     # 计算市值 (本地货币)
