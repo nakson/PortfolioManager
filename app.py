@@ -210,6 +210,20 @@ df['Market_Value_USD'] = current_values_usd
 
 # 4. 计算总资产与目标
 total_asset_usd = df['Market_Value_USD'].sum()
+
+# Calculate Total Cost
+total_cost_usd = 0.0
+for index, row in df.iterrows():
+    if 'Avg_Cost' in row and pd.notna(row['Avg_Cost']):
+        cost_local = row['Avg_Cost'] * row['Shares']
+        currency = row['Currency']
+        if currency == 'USD':
+            total_cost_usd += cost_local
+        elif currency == 'HKD':
+            total_cost_usd += cost_local / usd_hkd
+        elif currency == 'CNY':
+            total_cost_usd += cost_local / usd_cny
+
 new_total_equity = total_asset_usd + cash_injection
 
 # 5. 计算再平衡与操作建议
@@ -261,8 +275,8 @@ df['Action_Shares'] = action_shares_list
 # --- 模块 A: 资产概览 ---
 col1, col2, col3 = st.columns(3)
 col1.metric("当前持仓总市值 (USD)", f"${total_asset_usd:,.2f}")
-col2.metric("新投入资金 (USD)", f"${cash_injection:,.2f}")
-col3.metric("预估新总资产 (USD)", f"${new_total_equity:,.2f}")
+col2.metric("总持仓成本 (USD)", f"${total_cost_usd:,.2f}")
+col3.metric("理想现金仓位 (20%)", f"${total_asset_usd * 0.2:,.2f}")
 
 st.markdown("---")
 
